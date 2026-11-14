@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Узнайте всё о слонах — величественных гигантах нашей планеты. Биология, поведение, виды и сохранение популяций.">
+    <meta name="theme-color" content="#FAF9F6" id="theme-color-meta">
+    <title>BALKA-SLONIATKA | Величественные гиганты планеты</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://thumb.wikimedia.org" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="assets/images/hero-elephant-1600.webp" type="image/webp" media="(min-width: 769px)">
+    <link rel="stylesheet" href="styles.css?v=bg2">
+</head>
+<body>
+    <!-- Shared SVG logo sprite -->
+    <svg class="svg-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+        <symbol id="elephant-mark" viewBox="0 0 64 64">
+            <mask id="elephant-mark-eyes" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+                <rect width="64" height="64" fill="#FFFFFF"/>
+                <circle cx="27" cy="19.5" r="2.3" fill="#000000"/>
+                <circle cx="37" cy="19.5" r="2.3" fill="#000000"/>
+            </mask>
+            <g mask="url(#elephant-mark-eyes)" fill="currentColor">
+                <circle cx="32" cy="21" r="12.5"/>
+                <circle cx="14" cy="27" r="11.5"/>
+                <circle cx="50" cy="27" r="11.5"/>
+            </g>
+            <path d="M26 35.5l-1.8 6"
+                  fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M38 35.5l1.8 6"
+                  fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M32 33v11c0 5-3 8-8 8"
+                  fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <div class="preloader__inner">
+            <svg class="preloader__logo" aria-hidden="true" focusable="false">
+                <use href="#elephant-mark"/>
+            </svg>
+            <div class="preloader__bar"><span></span></div>
+            <p class="preloader__text">BALKA-SLONIATKA</p>
+        </div>
+    </div>
+
+    <!-- Custom cursor & film grain -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Главная навигация">
+        <div class="nav__container">
+            <a href="#" class="nav__logo" aria-label="Главная страница">
+                <svg class="nav__logo-icon" aria-hidden="true" focusable="false">
+                    <use href="#elephant-mark"/>
+                </svg>
+                <span class="nav__logo-text">BALKA-SLONIATKA</span>
+            </a>
+            <ul class="nav__list" role="list">
+                <li><a href="#about" class="nav__link">О слонах</a></li>
+                <li><a href="#species" class="nav__link">Виды</a></li>
+                <li><a href="#facts" class="nav__link">Факты</a></li>
+                <li><a href="#conservation" class="nav__link">Сохранение</a></li>
+            </ul>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему" aria-pressed="false">
+                    <svg class="theme-toggle__icon theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+                    </svg>
+                    <svg class="theme-toggle__icon theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+                    </svg>
+                </button>
+                <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+                    <span class="nav__toggle-bar"></span>
+                    <span class="nav__toggle-bar"></span>
+                    <span class="nav__toggle-bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" role="banner">
+        <div class="hero__background" aria-hidden="true">
+            <div class="hero__photo"></div>
+            <div class="hero__blob hero__blob--1"></div>
+            <div class="hero__blob hero__blob--2"></div>
+            <div class="hero__blob hero__blob--3"></div>
+        </div>
+        <div class="hero__particles" aria-hidden="true" id="hero-particles"></div>
+        <div class="hero__container">
+            <div class="hero__content" data-animate="fade-up">
+                <p class="hero__badge">Величественные гиганты Земли</p>
+                <h1 class="hero__title">
+                    Слоны —
+                    <span class="hero__title-accent">хранители саванн</span>
+                    <span class="hero__title-accent">и лесов</span>
+                </h1>
+                <p class="hero__description">
+                    Погрузитесь в удивительный мир самых больших наземных млекопитающих.
+                    Узнайте об их интеллекте, социальной жизни и важной роли в экосистемах.
+                </p>
+                <div class="hero__actions">
+                    <a href="#about" class="btn btn--primary btn--magnetic">Узнать больше</a>
+                    <a href="#species" class="btn btn--secondary btn--magnetic">Виды слонов</a>
+                </div>
+                <div class="hero__stats" role="list" aria-label="Статистика о слонах">
+                    <div class="hero__stat" role="listitem" data-animate="fade-up" data-delay="320">
+                        <span class="hero__stat-number" data-count="3">0</span>
+                        <span class="hero__stat-label">вида слонов</span>
+                    </div>
+                    <div class="hero__stat" role="listitem" data-animate="fade-up" data-delay="420">
+                        <span class="hero__stat-number" data-count="6000">0</span>
+                        <span class="hero__stat-label">кг — макс. вес</span>
+                    </div>
+                    <div class="hero__stat" role="listitem" data-animate="fade-up" data-delay="520">
+                        <span class="hero__stat-number" data-count="70">0</span>
+                        <span class="hero__stat-label">лет — длительность жизни</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="hero__photo-caption"><span class="hero__photo-caption-dot" aria-hidden="true"></span>Национальный парк Чобе, Ботсвана</p>
+        <div class="hero__scroll" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section section--about" aria-labelledby="about-title">
+        <div class="container">
+            <header class="section__header" data-animate="fade-up">
+                <p class="section__badge">О слонах</p>
+                <h2 id="about-title" class="section__title">Удивительные создания с богатой историей</h2>
+            </header>
+            <div class="about__grid stagger-children" data-animate="fade-up">
+                <div class="about__card">
+                    <div class="about__icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z"/>
+                            <path d="M24 12v12l8 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="about__title">Древние живы</h3>
+                    <p class="about__text">Слоны существуют на Земле уже более 55 миллионов лет. Их предки — праслоны и мастодонты — кочевали по всей планете, включая Арктику.</p>
+                </div>
+                <div class="about__card">
+                    <div class="about__icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="24" cy="24" r="20"/>
+                            <path d="M24 14v10l7 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="about__title">Высокий интеллект</h3>
+                    <p class="about__text">Мозг слона весит около 5 кг — это самый большой мозг среди наземных животных. Слоны умеют пользоваться инструментами, узнают себя в зеркале и скорбят по умершим сородичам.</p>
+                </div>
+                <div class="about__card">
+                    <div class="about__icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 24c0-6.6 5.4-12 12-12s12 5.4 12 12-5.4 12-12 12"/>
+                            <path d="M24 14v10l6 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="about__title">Семейные ценности</h3>
+                    <p class="about__text">Слоны живут в матриархальных стадах под руководством старейшины. Связи между особями сохраняются всю жизнь, а «бабушки» помогают воспитывать слонят.</p>
+                </div>
+                <div class="about__card">
+                    <div class="about__icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M24 4v40M4 24h40"/>
+                            <circle cx="24" cy="24" r="18"/>
+                        </svg>
+                    </div>
+                    <h3 class="about__title">Ключевой вид</h3>
+                    <p class="about__text">Слоны — «инженеры экосистем». Они создают водопои, протравливают тропы в зарослях, разбрасывают семена и поддерживают биоразнообразие целых ландшафтов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee ticker -->
+    <section class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+            <div class="marquee__group">
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>55 миллионов лет эволюции</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Более 40 000 мышц в хоботе</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Мозг весом около 5 кг</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Инфразвук слышен на 10 км</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Шесть смен зубов за жизнь</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Плавают до 50 км в день</span>
+            </div>
+            <div class="marquee__group">
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>55 миллионов лет эволюции</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Более 40 000 мышц в хоботе</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Мозг весом около 5 кг</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Инфразвук слышен на 10 км</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Шесть смен зубов за жизнь</span>
+                <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.5-6.3 4.5L8 13.9 2 9.4h7.6z"/></svg>Плавают до 50 км в день</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Species Section -->
+    <section id="species" class="section section--species" aria-labelledby="species-title">
+        <div class="container">
+            <header class="section__header" data-animate="fade-up">
+                <p class="section__badge">Виды слонов</p>
+                <h2 id="species-title" class="section__title">Три уникальных вида, каждый — шедевр эволюции</h2>
+            </header>
+            <div class="species__grid stagger-children" data-animate="fade-up">
+                <!-- African Savanna Elephant -->
+                <article class="species__card">
+                    <div class="species__image">
+                        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/960px-African_Bush_Elephant.jpg"
+                             alt="Африканский саванный слон в естественной среде"
+                             loading="lazy"
+                             width="600" height="400">
+                    </div>
+                    <div class="species__content">
+                        <span class="species__badge">Самый крупный</span>
+                        <h3 class="species__name">Африканский саванный слон</h3>
+                        <p class="species__latin">Loxodonta africana</p>
+                        <ul class="species__features" role="list">
+                            <li>Вес: до 6000 кг</li>
+                            <li>Высота в холке: до 4 м</li>
+                            <li>Огромные уши в форме Африки</li>
+                            <li>Два пальца на конце хобота</li>
+                        </ul>
+                        <div class="species__range">
+                            <span class="species__range-label">Ареал:</span>
+                            <span class="species__range-text">Саванны и пустыни Африки к югу от Сахары</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- African Forest Elephant -->
+                <article class="species__card">
+                    <div class="species__image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Forest_elephant.jpg"
+                             alt="Африканский лесной слон в тропическом лесу"
+                             loading="lazy"
+                             width="600" height="400">
+                    </div>
+                    <div class="species__content">
+                        <span class="species__badge">Лесной житель</span>
+                        <h3 class="species__name">Африканский лесной слон</h3>
+                        <p class="species__latin">Loxodonta cyclotis</p>
+                        <ul class="species__features" role="list">
+                            <li>Вес: до 4000 кг</li>
+                            <li>Высота в холке: до 2.5 м</li>
+                            <li>Круглые уши, прямые клыки</li>
+                            <li>Тёмная, густая шерсть</li>
+                        </ul>
+                        <div class="species__range">
+                            <span class="species__range-label">Ареал:</span>
+                            <span class="species__range-text">Тропические леса Центральной и Западной Африки</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Asian Elephant -->
+                <article class="species__card">
+                    <div class="species__image">
+                        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Asian_Elephant.jpg/960px-Asian_Elephant.jpg"
+                             alt="Азиатский слон в национальном парке"
+                             loading="lazy"
+                             width="600" height="400">
+                    </div>
+                    <div class="species__content">
+                        <span class="species__badge">Ближайший друг человека</span>
+                        <h3 class="species__name">Азиатский слон</h3>
+                        <p class="species__latin">Elephas maximus</p>
+                        <ul class="species__features" role="list">
+                            <li>Вес: до 5000 кг</li>
+                            <li>Высота в холке: до 3 м</li>
+                            <li>Маленькие уши, один палец на хоботе</li>
+                            <li>Клыки только у самцов (не у всех)</li>
+                        </ul>
+                        <div class="species__range">
+                            <span class="species__range-label">Ареал:</span>
+                            <span class="species__range-text">Индия, Шри-Ланка, Юго-Восточная Азия, Китай</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facts Section -->
+    <section id="facts" class="section section--facts" aria-labelledby="facts-title">
+        <div class="container">
+            <header class="section__header" data-animate="fade-up">
+                <p class="section__badge">Удивительные факты</p>
+                <h2 id="facts-title" class="section__title">Вещи, которые вы, возможно, не знали о слонах</h2>
+            </header>
+            <div class="facts__grid stagger-children" data-animate="fade-up">
+                <article class="fact__card">
+                    <div class="fact__number">01</div>
+                    <div class="fact__content">
+                        <h3 class="fact__title">Хобот — мультитул природы</h3>
+                        <p class="fact__text">В хоботе слона более 40 000 мышц (у человека во всем теле ~600). Он может поднять бревно весом 300 кг или аккуратно снять лепесток с цветка.</p>
+                    </div>
+                </article>
+                <article class="fact__card">
+                    <div class="fact__number">02</div>
+                    <div class="fact__content">
+                        <h3 class="fact__title">Слоны не умеют прыгать</h3>
+                        <p class="fact__text">Они — единственные млекопитающие, которые физически не могут оттолкнуться от земли всеми четырьмя лапами одновременно. Но они отлично плавают и могут преодолеть 50 км в воде.</p>
+                    </div>
+                </article>
+                <article class="fact__card">
+                    <div class="fact__number">03</div>
+                    <div class="fact__content">
+                        <h3 class="fact__title">Инфразвуковая связь</h3>
+                        <p class="fact__text">Слоны общаются звуками частотой 14–35 Гц, неслышимых для уха человека. Такие сигналы распространяются на 10 км и позволяют стадам координировать движения.</p>
+                    </div>
+                </article>
+                <article class="fact__card">
+                    <div class="fact__number">04</div>
+                    <div class="fact__content">
+                        <h3 class="fact__title">Шесть смен зубов за жизнь</h3>
+                        <p class="fact__text">Слоны меняют жевательные зубы 6 раз. Когда последняя пара изнашивается, слону становится трудно есть — это одна из причин естественной смерти старых особей.</p>
+                    </div>
+                </article>
+                <article class="fact__card">
+                    <div class="fact__number">05</div>
+                    <div class="fact__content">
+                        <h3 class="fact__title">Слоны боятся пчёл</h3>
+                        <p class="fact__text">Несмотря на толстую кожу, слоны в панике убегают от звука пчёл. Фермеры в Африке используют ульи как естественный забор — «пчелиные заборы» спасают урожаи и жизни слонов.</p>
+                    </div>
+                </article>
+                <article class="fact__card">
+                    <div class="fact__number">06</div>
+                    <div class="fact__content">
+                        <h3 class="fact__title">Ритуалы прощания</h3>
+                        <p class="fact__text">Слоны — одно из немногих животных, скорбящих по мёртвым. Они касаются хоботами останков сородичей, стоят в тишине часами и даже возвращаются к местам гибели спустя годы.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conservation Section -->
+    <section id="conservation" class="section section--conservation" aria-labelledby="conservation-title">
+        <div class="container">
+            <header class="section__header" data-animate="fade-up">
+                <p class="section__badge">Под угрозой</p>
+                <h2 id="conservation-title" class="section__title">Слоны исчезают — но мы можем это изменить</h2>
+            </header>
+            <div class="conservation__grid">
+                <div class="conservation__content">
+                    <div class="conservation__stats stagger-children" data-animate="fade-up" role="list" aria-label="Статистика браконьерства">
+                        <div class="conservation__stat-item" role="listitem">
+                            <span class="conservation__stat-number" data-count="90">0</span>
+                            <span class="conservation__stat-suffix">%</span>
+                            <p class="conservation__stat-label">популяции африканских слонов потеряно за столетие</p>
+                        </div>
+                        <div class="conservation__stat-item" role="listitem">
+                            <span class="conservation__stat-number" data-count="20000">0</span>
+                            <span class="conservation__stat-suffix">+</span>
+                            <p class="conservation__stat-label">слонов убивается ежегодно ради клыков</p>
+                        </div>
+                        <div class="conservation__stat-item" role="listitem">
+                            <span class="conservation__stat-number" data-count="50">0</span>
+                            <span class="conservation__stat-suffix">%</span>
+                            <p class="conservation__stat-label">снижение числа лесных слонов за 30 лет</p>
+                        </div>
+                    </div>
+                    <div class="conservation__threats" data-animate="fade-up" data-delay="200">
+                        <h3 class="conservation__threats-title">Главные угрозы</h3>
+                        <ul class="conservation__threats-list" role="list">
+                            <li>
+                                <span class="conservation__threat-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 8v4M12 16h.01"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>Браконьерство за слоновую кость</strong>
+                                    <span>Нелегальный рынок слоновой кости оценивается в миллиарды долларов. Несмотря на запрет CITES, спрос в Азии сохраняется.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="conservation__threat-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                        <polyline points="9 22 9 12 15 12 15 22"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>Потеря среды обитания</strong>
+                                    <span>Леса вырубают под плантации пальмы, сельское хозяйство и инфраструктуру. Ареал слонов сократился на 85% за два столетия.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="conservation__threat-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                        <path d="M12 6v6l4 2"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>Климатические изменения</strong>
+                                    <span>Засухи истощают водопои и кормовую базу. Слоны вынуждены мигрировать в зоны конфликта с людьми.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="conservation__action" data-animate="fade-up" data-delay="300">
+                    <div class="action__card">
+                        <div class="action__icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M24 4v5M24 39v5M4 24h5M39 24h5M9.17 9.17l3.54 3.54M35.3 35.3l3.54 3.54M9.17 38.83l3.54-3.54M35.3 12.7l3.54-3.54"/>
+                                <circle cx="24" cy="24" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="action__title">Как вы можете помочь</h3>
+                        <p class="action__text">Каждый вклад важен для выживания этих величественных животных.</p>
+                        <ul class="action__list" role="list">
+                            <li>
+                                <span class="action__check" aria-hidden="true">
+                                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="5 10 9 14 15 6"/>
+                                    </svg>
+                                </span>
+                                Не покупайте изделия из слоновой кости
+                            </li>
+                            <li>
+                                <span class="action__check" aria-hidden="true">
+                                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="5 10 9 14 15 6"/>
+                                    </svg>
+                                </span>
+                                Поддерживайте организации по защите слонов (WWF, Save the Elephants, IFAW)
+                            </li>
+                            <li>
+                                <span class="action__check" aria-hidden="true">
+                                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="5 10 9 14 15 6"/>
+                                    </svg>
+                                </span>
+                                Выбирайте этический туризм — не кататься на слонах, не посещать цирки с животными
+                            </li>
+                            <li>
+                                <span class="action__check" aria-hidden="true">
+                                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="5 10 9 14 15 6"/>
+                                    </svg>
+                                </span>
+                                Рассказывайте другим о проблеме — информированность спасает жизни
+                            </li>
+                        </ul>
+                        <a href="https://www.worldwildlife.org/species/elephant" target="_blank" rel="noopener" class="btn btn--primary btn--wide btn--magnetic">
+                            Поддержать WWF
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15 3 21 3 21 9"/>
+                                <line x1="10" y1="14" x2="21" y2="3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section section--gallery" aria-labelledby="gallery-title">
+        <div class="container">
+            <header class="section__header" data-animate="fade-up">
+                <p class="section__badge">Галерея</p>
+                <h2 id="gallery-title" class="section__title">Слоны в их естественной среде</h2>
+            </header>
+            <div class="gallery__carousel" data-animate="fade-up">
+                <div class="gallery__stage">
+                    <div class="gallery__viewport" tabindex="0" role="region" aria-roledescription="карусель" aria-label="Фотографии слонов. Прокручивайте, перетаскивайте или используйте стрелки">
+                        <div class="gallery__track" role="list" aria-label="Фотографии слонов">
+                            <figure class="gallery__item" role="listitem">
+                                <div class="gallery__image">
+                                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Elephant_Maasai_Mara.jpg/960px-Elephant_Maasai_Mara.jpg"
+                                         alt="Стадо слонов в национальном заповеднике Масаи-Мара, Кения"
+                                         loading="lazy"
+                                         width="800" height="600">
+                                </div>
+                                <figcaption class="gallery__caption">
+                                    <span class="gallery__caption-title">Саванный слон</span>
+                                    <span class="gallery__caption-subtitle">Кения, Масаи-Мара</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="gallery__item" role="listitem">
+                                <div class="gallery__image">
+                                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Elephants_in_Lop%C3%A9_National_Park.JPG/960px-Elephants_in_Lop%C3%A9_National_Park.JPG"
+                                         alt="Слоны на саванне в национальном парке Лопе, Габон"
+                                         loading="lazy"
+                                         width="800" height="600">
+                                </div>
+                                <figcaption class="gallery__caption">
+                                    <span class="gallery__caption-title">Лесной слон</span>
+                                    <span class="gallery__caption-subtitle">Габон, парк Лопе</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="gallery__item" role="listitem">
+                                <div class="gallery__image">
+                                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Asian_Elephant_in_Udawalawe_National_Park%2C_Sri_Lanka.jpg/960px-Asian_Elephant_in_Udawalawe_National_Park%2C_Sri_Lanka.jpg"
+                                         alt="Азиатский слон в национальном парке Удавалаве, Шри-Ланка"
+                                         loading="lazy"
+                                         width="800" height="600">
+                                </div>
+                                <figcaption class="gallery__caption">
+                                    <span class="gallery__caption-title">Азиатский слон</span>
+                                    <span class="gallery__caption-subtitle">Шри-Ланка, Удавалаве</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="gallery__item" role="listitem">
+                                <div class="gallery__image">
+                                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Elephants_in_Chobe_National_Park_03.jpg/960px-Elephants_in_Chobe_National_Park_03.jpg"
+                                         alt="Семейная группа слонов в национальном парке Чобе, Ботсвана"
+                                         loading="lazy"
+                                         width="800" height="600">
+                                </div>
+                                <figcaption class="gallery__caption">
+                                    <span class="gallery__caption-title">Мать и слонёнок</span>
+                                    <span class="gallery__caption-subtitle">Ботсвана, Чобе</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="gallery__item" role="listitem">
+                                <div class="gallery__image">
+                                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Zambezi_River_-_Zambezi3527.jpg/960px-Zambezi_River_-_Zambezi3527.jpg"
+                                         alt="Слоны купаются у берега реки Замбези"
+                                         loading="lazy"
+                                         width="800" height="600">
+                                </div>
+                                <figcaption class="gallery__caption">
+                                    <span class="gallery__caption-title">Купание в реке</span>
+                                    <span class="gallery__caption-subtitle">Замбези, Южная Африка</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="gallery__item" role="listitem">
+                                <div class="gallery__image">
+                                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Serengeti_National_Park_12_-_African_elephant_%28Loxodonta%29.jpg/960px-Serengeti_National_Park_12_-_African_elephant_%28Loxodonta%29.jpg"
+                                         alt="Африканский слон в национальном парке Серенгети, Танзания"
+                                         loading="lazy"
+                                         width="800" height="600">
+                                </div>
+                                <figcaption class="gallery__caption">
+                                    <span class="gallery__caption-title">Стадо на закате</span>
+                                    <span class="gallery__caption-subtitle">Танзания, Серенгети</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery__footer">
+                    <p class="gallery__hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M8 7 4 12l4 5"/>
+                            <path d="m16 7 4 5-4 5"/>
+                        </svg>
+                        Прокрутите, перетащите или используйте стрелки
+                    </p>
+                    <div class="gallery__controls">
+                        <span class="gallery__count" data-gallery-count aria-hidden="true">01 / 06</span>
+                        <button class="gallery__toggle" type="button" data-gallery-toggle aria-pressed="false" aria-label="Остановить автопрокрутку">
+                            <svg class="gallery__toggle-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <rect x="7" y="5" width="3.5" height="14" rx="1.2"/>
+                                <rect x="13.5" y="5" width="3.5" height="14" rx="1.2"/>
+                            </svg>
+                            <svg class="gallery__toggle-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M8 5.5a1 1 0 0 1 1.53-.85l9 6.5a1 1 0 0 1 0 1.7l-9 6.5A1 1 0 0 1 8 18.5Z"/>
+                            </svg>
+                        </button>
+                        <button class="gallery__arrow" type="button" data-gallery-prev aria-label="Предыдущее фото">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M15 5l-7 7 7 7"/>
+                            </svg>
+                        </button>
+                        <button class="gallery__arrow" type="button" data-gallery-next aria-label="Следующее фото">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section section--newsletter" aria-labelledby="newsletter-title">
+        <div class="container">
+            <div class="newsletter__card" data-animate="fade-up">
+                <div class="newsletter__content">
+                    <h2 id="newsletter-title" class="newsletter__title">Оставайтесь в курсе</h2>
+                    <p class="newsletter__text">Подпишитесь на рассылку и получайте свежие новости, исследования и истории о слонах раз в месяц.</p>
+                </div>
+                <form class="newsletter__form" action="#" method="post">
+                    <label for="email" class="visually-hidden">Ваш email</label>
+                    <input type="email" id="email" name="email" class="newsletter__input" placeholder="Введите ваш email" required autocomplete="email">
+                    <button type="submit" class="btn btn--primary btn--magnetic">Подписаться</button>
+                </form>
+                <p class="newsletter__privacy">Никакого спама. Только ценная информация. <a href="#">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="#" class="footer__logo" aria-label="Главная страница">
+                        <svg class="footer__logo-icon" aria-hidden="true" focusable="false">
+                            <use href="#elephant-mark"/>
+                        </svg>
+                        <span class="footer__logo-text">BALKA-SLONIATKA</span>
+                    </a>
+                    <p class="footer__description">Посвящённое сохранению и изучению величественных гигантов нашей планеты.</p>
+                    <div class="footer__social" role="list" aria-label="Социальные сети">
+                        <a href="https://www.instagram.com/wwf/" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram" role="listitem">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/wwf" target="_blank" rel="noopener" class="footer__social-link" aria-label="Twitter" role="listitem">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/user/WWF" target="_blank" rel="noopener" class="footer__social-link" aria-label="YouTube" role="listitem">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.44 24.13 24.13 0 0 1 7.62 0 2 2 0 0 1 1.85 1.8 24.12 24.12 0 0 1 0 10.08 2 2 0 0 1-1.86 1.8 24.14 24.14 0 0 1-7.61 0 2 2 0 0 1-1.4-1.44z"/>
+                                <path d="M10 15l5-3-5-3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <nav class="footer__nav" aria-label="Навигация по сайту">
+                    <h4 class="footer__nav-title">Разделы</h4>
+                    <ul class="footer__nav-list" role="list">
+                        <li><a href="#about" class="footer__nav-link">О слонах</a></li>
+                        <li><a href="#species" class="footer__nav-link">Виды слонов</a></li>
+                        <li><a href="#facts" class="footer__nav-link">Удивительные факты</a></li>
+                        <li><a href="#conservation" class="footer__nav-link">Сохранение</a></li>
+                    </ul>
+                </nav>
+                <nav class="footer__nav" aria-label="Ресурсы">
+                    <h4 class="footer__nav-title">Ресурсы</h4>
+                    <ul class="footer__nav-list" role="list">
+                        <li><a href="https://www.worldwildlife.org/species/elephant" target="_blank" rel="noopener" class="footer__nav-link">WWF — Слоны</a></li>
+                        <li><a href="https://savetheelephants.org/" target="_blank" rel="noopener" class="footer__nav-link">Save the Elephants</a></li>
+                        <li><a href="https://www.iucnredlist.org/" target="_blank" rel="noopener" class="footer__nav-link">IUCN Red List</a></li>
+                        <li><a href="https://cites.org/" target="_blank" rel="noopener" class="footer__nav-link">CITES</a></li>
+                    </ul>
+                </nav>
+                <div class="footer__contact">
+                    <h4 class="footer__nav-title">Контакты</h4>
+                    <address class="footer__address" style="font-style: normal;">
+                        <p class="footer__contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>Москва, Россия</span>
+                        </p>
+                        <p class="footer__contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:hello@elephant-world.example" class="footer__contact-link">hello@elephant-world.example</a>
+                        </p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2025 BALKA-SLONIATKA. Создано с заботой о природе.</p>
+                <p class="footer__disclaimer">Фотографии из Wikimedia Commons (CC BY-SA). Иллюстрации — авторские SVG-графики.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии" aria-hidden="true">
+        <button class="lightbox__close" type="button" aria-label="Закрыть">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Предыдущее фото">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <figure class="lightbox__figure">
+            <img class="lightbox__img" src="" alt="">
+            <figcaption class="lightbox__caption"></figcaption>
+        </figure>
+        <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Следующее фото">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+    </div>
+
+    <!-- Scroll to top with progress ring -->
+    <button class="to-top" id="to-top" type="button" aria-label="Вернуться наверх">
+        <svg class="to-top__ring" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="to-top__track" cx="24" cy="24" r="20"/>
+            <circle class="to-top__progress" cx="24" cy="24" r="20"/>
+        </svg>
+        <svg class="to-top__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <script src="script.js?v=bg2"></script>
+</body>
+</html>
