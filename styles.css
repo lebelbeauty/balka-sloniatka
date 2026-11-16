@@ -406,6 +406,25 @@ p {
   transition: transform 50ms ease;
 }
 
+.btn--accent {
+  background: #00B4D8;
+  color: #fff;
+  border: 2px solid #00B4D8;
+  box-shadow: var(--shadow-md);
+}
+
+.btn--accent:hover {
+  background: #0096C7;
+  border-color: #0096C7;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 180, 216, 0.4);
+}
+
+.btn--accent:active {
+  transform: translateY(-1px);
+  transition: transform 50ms ease;
+}
+
 .btn--wide {
   width: 100%;
 }
